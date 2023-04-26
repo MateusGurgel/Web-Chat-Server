@@ -15,9 +15,9 @@ server.register(fastifyIO, {
 server.ready().then(() => {
   server.io.on("connection", (socket) => {
     console.log(`user: ${socket.id} connected`);
+    socket.emit("recive-id", socket.id );
 
     socket.on("send-message", (message) => {
-
       server.io.emit("recive-message", {
         user: socket.id,
         content: message,
